@@ -1,8 +1,11 @@
 package com.hcl.entity;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -15,6 +18,9 @@ public class Student {
 	
 	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
 	private Laptop laptop;
+	
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+	private List<Address> addresses;
 	
 	public Student() {
 		
@@ -67,6 +73,13 @@ public class Student {
 	public void setLaptop(Laptop laptop) {
 		this.laptop = laptop;
 	}
-	
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
 	
 }
